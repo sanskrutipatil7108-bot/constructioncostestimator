@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Dataset lives at public/construction_data.csv and is parsed client-side in src/lib/data.ts; project-level figures always go through uniqueProjects() — Total_Project_Cost_INR repeats per material row.
