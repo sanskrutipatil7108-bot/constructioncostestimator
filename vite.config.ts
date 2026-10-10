@@ -9,7 +9,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // PAGES_BUILD=1 switches the build to a fully static site for GitHub Pages,
 // served under the /constructioncostestimator/ base path. The normal
 // `vite build` (Lovable/Cloudflare target) is untouched.
-const isPagesBuild = process.env.PAGES_BUILD === "1";
+const isPagesBuild = process.env["PAGES_BUILD"] === "1";
 
 export default defineConfig({
   vite: isPagesBuild

@@ -24,7 +24,7 @@ export function BarChart({ labels, data, label, money, color = ORANGE, xTitle, y
         plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => (money ? "₹" + Number(c.raw).toLocaleString("en-IN", { maximumFractionDigits: 0 }) : Number(c.raw).toLocaleString("en-IN", { maximumFractionDigits: 2 })) } } },
         scales: {
           x: { grid: { display: false }, title: { display: !!xTitle, text: xTitle } },
-          y: { grid, beginAtZero: true, title: { display: !!yTitle, text: yTitle }, ticks: { callback: money ? inrTick : undefined } },
+          y: { grid, beginAtZero: true, title: { display: !!yTitle, text: yTitle }, ticks: money ? { callback: inrTick } : {} },
         },
       }}
     />

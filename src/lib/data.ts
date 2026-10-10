@@ -23,7 +23,7 @@ const NUM = ["Length_m", "Width_m", "Height_m", "Thickness_m", "Area_m2", "Volum
 
 export function parseCsv(text: string): Dataset {
   const lines = text.replace(/\r/g, "").split("\n").filter((l) => l.trim());
-  const head = lines[0].split(",").map((h) => h.trim());
+  const head = (lines[0] ?? "").split(",").map((h) => h.trim());
   let missing = 0;
   const seen = new Set<string>();
   let duplicates = 0;
@@ -46,7 +46,7 @@ export const median = (a: number[]) => {
   if (!a.length) return 0;
   const s = [...a].sort((x, y) => x - y);
   const m = Math.floor(s.length / 2);
-  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+  return s.length % 2 ? s[m]! : (s[m - 1]! + s[m]!) / 2;
 };
 export const sum = (a: number[]) => a.reduce((x, y) => x + y, 0);
 export const avg = (a: number[]) => (a.length ? sum(a) / a.length : 0);
@@ -71,7 +71,7 @@ export function byMaterial(rows: Row[]) {
   rows.forEach((r) => g.set(r.Material, [...(g.get(r.Material) ?? []), r]));
   return [...g.entries()].map(([material, rs]) => ({
     material,
-    unit: rs[0].Unit,
+    unit: rs[0]?.Unit ?? "",
     totalCost: sum(rs.map((r) => r.Material_Cost_INR)),
     totalQty: sum(rs.map((r) => r.Quantity)),
     avgPrice: avg(rs.map((r) => r.Unit_Price_INR)),
