@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { parseCsv } from "./data";
 
-export const DATASET_URL = "/construction_data.csv";
+export const DATASET_URL = `${import.meta.env.BASE_URL}construction_data.csv`;
 
 export function useDataset() {
   return useQuery({
