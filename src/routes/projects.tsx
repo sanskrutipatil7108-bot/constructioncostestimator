@@ -28,7 +28,7 @@ function Projects() {
 
   const list = useMemo(() => {
     if (!data) return [];
-    const k = SORTS[sort];
+    const k = SORTS[sort] ?? "Project_ID";
     return uniqueProjects(data.rows)
       .filter((p) => (st === "All" || p.Structure_Type === st) && p.Project_ID.toLowerCase().includes(q.trim().toLowerCase()))
       .sort((a, b) => {
